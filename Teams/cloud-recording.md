@@ -107,7 +107,12 @@ Set-CsTeamsMeetingPolicy -Identity Global -AllowCloudRecording $false
 
 Meeting recordings are stored in Microsoft Stream cloud storage. Recordings are retained and available for viewing and download for 21 days. Currently, the meeting recording feature is turned off for customers whose Teams data is stored in-country if Microsoft Stream isn't available in the in-country data residency region where the data is stored. In the future, the meeting recording feature will be turned on for customers whose data is stored in-country even if Microsoft Stream isn't available in the in-country data residency region.
 
-When this change takes effect, meeting recordings will be stored by default in the nearest geographic region for Microsoft Stream. If your Teams data is stored in-country and you prefer to store meeting recordings in-country, we recommend that you turn off the feature, and then turn it on after Microsoft Stream is deployed to your in-country data residency region. To turn off the feature for all users in your organization, turn off the **Allow cloud recording** setting in the Global Teams meeting policy, which is in the Microsoft Teams admin center.
+When this change takes effect, meeting recordings will be stored by default in the nearest geographic region for Microsoft Stream. If your Teams data is stored in-country and you prefer to store meeting recordings in-country, we recommend that you turn off the feature, and then turn it on after Microsoft Stream is deployed to your in-country data residency region. To turn off the feature for all users in your organization, turn off the **Allow cloud recording** setting in the Global Teams meeting policy, which is in the Microsoft Teams admin center. If, however, you still wish to enabled recordings to be stored in the nearest geographical region for Microsoft Stream, you must allow both **Allow cloud recording** and **Allow recording storage outside region** before the changes take place.
+
+
+```powershell
+Set-CsTeamsMeetingPolicy -Identity {user} -AllowCloudRecording $true -AllowRecordingStorageOutsideRegion $true
+```
 
 Here's a summary of what happens when you turn on meeting recording when this change takes effect:
 
